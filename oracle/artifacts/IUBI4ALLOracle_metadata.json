@@ -6,130 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_priceFeed",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "initialOwner",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"name": "OwnableInvalidOwner",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "OwnableUnauthorizedAccount",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "int256",
-						"name": "value",
-						"type": "int256"
-					}
-				],
-				"name": "SafeCastOverflowedIntToUint",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "value",
-						"type": "uint256"
-					}
-				],
-				"name": "SafeCastOverflowedUintToInt",
-				"type": "error"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "bytes32",
-						"name": "pair",
-						"type": "bytes32"
-					}
-				],
-				"name": "EmergencyPause",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "previousOwner",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "OwnershipTransferred",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "Paused",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "oldFeed",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newFeed",
-						"type": "address"
-					}
-				],
-				"name": "PriceFeedUpdated",
-				"type": "event"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -155,58 +31,6 @@
 				"type": "event"
 			},
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "Unpaused",
-				"type": "event"
-			},
-			{
-				"inputs": [],
-				"name": "CHAINLINK_STALENESS_THRESHOLD",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "EUR_USD_PAIR",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "PRICE_VALIDITY_PERIOD",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "bytes32",
@@ -220,22 +44,22 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "weight",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "heartbeat",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "maxDeviation",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "minConfidence",
 						"type": "uint256"
 					}
 				],
@@ -348,81 +172,6 @@
 				"inputs": [
 					{
 						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"name": "latestPrices",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "isValid",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "pause",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "paused",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "priceFeed",
-				"outputs": [
-					{
-						"internalType": "contract AggregatorV3Interface",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
 						"name": "pair",
 						"type": "bytes32"
 					},
@@ -434,33 +183,6 @@
 				],
 				"name": "removeOracleSource",
 				"outputs": [],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "transferOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "unpause",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -483,7 +205,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "confidence",
 						"type": "uint256"
 					}
 				],
@@ -494,57 +216,15 @@
 			}
 		],
 		"devdoc": {
-			"errors": {
-				"OwnableInvalidOwner(address)": [
-					{
-						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
-					}
-				],
-				"OwnableUnauthorizedAccount(address)": [
-					{
-						"details": "The caller account is not authorized to perform an operation."
-					}
-				],
-				"SafeCastOverflowedIntToUint(int256)": [
-					{
-						"details": "An int value doesn't fit in an uint of `bits` size."
-					}
-				],
-				"SafeCastOverflowedUintToInt(uint256)": [
-					{
-						"details": "An uint value doesn't fit in an int of `bits` size."
-					}
-				]
-			},
-			"events": {
-				"Paused(address)": {
-					"details": "Emitted when the pause is triggered by `account`."
-				},
-				"Unpaused(address)": {
-					"details": "Emitted when the pause is lifted by `account`."
-				}
-			},
 			"kind": "dev",
 			"methods": {
 				"getLatestPrice()": {
 					"returns": {
 						"_0": "Prezzo più recente come int256"
 					}
-				},
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
-				"paused()": {
-					"details": "Returns true if the contract is paused, and false otherwise."
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
-			"title": "UBI4ALLOracle - Oracolo per il prezzo EUR/USD",
+			"title": "IUBI4ALLOracle - Interfaccia per l'oracolo del prezzo EUR/USD",
 			"version": 1
 		},
 		"userdoc": {
@@ -555,6 +235,9 @@
 			},
 			"kind": "user",
 			"methods": {
+				"addOracleSource(bytes32,address,uint256,uint256,uint256,uint256)": {
+					"notice": "Aggiunge o aggiorna un feed Chainlink"
+				},
 				"getAggregatedPrice(bytes32)": {
 					"notice": "Ottiene il prezzo aggregato per una coppia"
 				},
@@ -569,15 +252,17 @@
 				},
 				"removeOracleSource(bytes32,address)": {
 					"notice": "Rimuove un feed Chainlink"
+				},
+				"updatePrice(bytes32,uint256,uint256,uint256)": {
+					"notice": "Aggiorna manualmente il prezzo per una coppia"
 				}
 			},
-			"notice": "Fornisce prezzi aggiornati per la coppia EUR/USD, con fallback a Chainlink",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"oracle/UBI4ALLOracle.sol": "UBI4ALLOracle"
+			"oracle/UBI4ALLOracle.sol": "IUBI4ALLOracle"
 		},
 		"evmVersion": "london",
 		"libraries": {},

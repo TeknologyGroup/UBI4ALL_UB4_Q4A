@@ -1,0 +1,949 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_quantumToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_oracle",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_vrfCoordinator",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_keyHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint64",
+						"name": "_subscriptionId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "initialOwner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "have",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "want",
+						"type": "address"
+					}
+				],
+				"name": "OnlyCoordinatorCanFulfill",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newAPY",
+						"type": "uint256"
+					}
+				],
+				"name": "APYUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "RandomAPYRequested",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardClaimed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isDAO",
+						"type": "bool"
+					}
+				],
+				"name": "Staked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdrawn",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "BASE_APY",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "COORDINATOR",
+				"outputs": [
+					{
+						"internalType": "contract VRFCoordinatorV2Interface",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DAO_APY",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DAO_SUPERPOSITION_MAX",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DAO_SUPERPOSITION_MIN",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "SUPERPOSITION_MAX",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "SUPERPOSITION_MIN",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "UPDATE_INTERVAL",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "VOLATILITY_BONUS",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "calculateReward",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "callbackGasLimit",
+				"outputs": [
+					{
+						"internalType": "uint32",
+						"name": "",
+						"type": "uint32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getStakedBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTotalValueLocked",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "keyHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "numWords",
+				"outputs": [
+					{
+						"internalType": "uint32",
+						"name": "",
+						"type": "uint32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oracle",
+				"outputs": [
+					{
+						"internalType": "contract IUBI4ALLOracle",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "quantumToken",
+				"outputs": [
+					{
+						"internalType": "contract IUBI4ALLQuantum",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "randomWords",
+						"type": "uint256[]"
+					}
+				],
+				"name": "rawFulfillRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "requestConfirmations",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "requestToUser",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "stake",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "stakeForDAO",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "stakes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "daoAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lastUpdate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "accumulatedReward",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentAPY",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "subscriptionId",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalValueLocked",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint32",
+						"name": "_callbackGasLimit",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint16",
+						"name": "_requestConfirmations",
+						"type": "uint16"
+					}
+				],
+				"name": "updateVRFParams",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"calculateReward(address)": {
+					"params": {
+						"user": "Indirizzo dell'utente"
+					},
+					"returns": {
+						"_0": "Ricompense totali (accumulate + in attesa)"
+					}
+				},
+				"constructor": {
+					"params": {
+						"_keyHash": "Gas key per VRF",
+						"_oracle": "Indirizzo dell'oracolo",
+						"_quantumToken": "Indirizzo del contratto Q4A",
+						"_subscriptionId": "ID della sottoscrizione VRF",
+						"_vrfCoordinator": "Indirizzo del coordinatore VRF Chainlink",
+						"initialOwner": "Indirizzo del proprietario iniziale"
+					}
+				},
+				"getStakedBalance(address)": {
+					"params": {
+						"user": "Indirizzo dell'utente"
+					},
+					"returns": {
+						"_0": "Saldo staked totale (standard + DAO)"
+					}
+				},
+				"getTotalValueLocked()": {
+					"returns": {
+						"_0": "Totale dei token staked"
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"stake(uint256)": {
+					"params": {
+						"amount": "Quantità di token da stakare"
+					}
+				},
+				"stakeForDAO(uint256)": {
+					"params": {
+						"amount": "Quantità di token da stakare"
+					}
+				},
+				"transferOwnership(address)": {
+					"params": {
+						"newOwner": "Indirizzo del nuovo proprietario"
+					}
+				},
+				"updateVRFParams(uint32,uint16)": {
+					"params": {
+						"_callbackGasLimit": "Nuovo limite di gas per il callback",
+						"_requestConfirmations": "Nuovo numero di conferme"
+					}
+				},
+				"withdraw(uint256)": {
+					"params": {
+						"amount": "Quantità di token da prelevare"
+					}
+				}
+			},
+			"stateVariables": {
+				"BASE_APY": {
+					"details": "APY base (10%, in base 10000)"
+				},
+				"DAO_APY": {
+					"details": "APY per DAO (12%, in base 10000)"
+				},
+				"DAO_SUPERPOSITION_MAX": {
+					"details": "APY massimo per staking DAO (16%, in base 10000)"
+				},
+				"DAO_SUPERPOSITION_MIN": {
+					"details": "APY minimo per staking DAO (10%, in base 10000)"
+				},
+				"SUPERPOSITION_MAX": {
+					"details": "APY massimo per staking standard (14%, in base 10000)"
+				},
+				"SUPERPOSITION_MIN": {
+					"details": "APY minimo per staking standard (8%, in base 10000)"
+				},
+				"UPDATE_INTERVAL": {
+					"details": "Intervallo di aggiornamento APY (30 giorni)"
+				},
+				"VOLATILITY_BONUS": {
+					"details": "Bonus massimo per volatilità (2%, in base 10000)"
+				},
+				"callbackGasLimit": {
+					"details": "Limite di gas per il callback VRF"
+				},
+				"keyHash": {
+					"details": "Gas key per VRF"
+				},
+				"numWords": {
+					"details": "Numero di parole casuali richieste"
+				},
+				"requestConfirmations": {
+					"details": "Numero di conferme richieste per VRF"
+				},
+				"requestToUser": {
+					"details": "Mappatura delle richieste VRF per utente"
+				},
+				"stakes": {
+					"details": "Mappatura degli stake per utente"
+				},
+				"subscriptionId": {
+					"details": "ID della sottoscrizione VRF"
+				},
+				"totalValueLocked": {
+					"details": "Totale dei token staked"
+				}
+			},
+			"title": "UBI4ALLQuantumFinance - Contratto di staking e finanza per il token Q4A",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"APYUpdated(address,uint256)": {
+					"notice": "Evento emesso quando l'APY di un utente viene aggiornato"
+				},
+				"RandomAPYRequested(address,uint256)": {
+					"notice": "Evento emesso quando viene richiesta una nuova APY casuale"
+				},
+				"RewardClaimed(address,uint256)": {
+					"notice": "Evento emesso quando un utente reclama ricompense"
+				},
+				"Staked(address,uint256,bool)": {
+					"notice": "Evento emesso quando un utente stake token"
+				},
+				"Withdrawn(address,uint256)": {
+					"notice": "Evento emesso quando un utente preleva token"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"calculateReward(address)": {
+					"notice": "Calcola le ricompense totali per un utente"
+				},
+				"claimReward()": {
+					"notice": "Reclama le ricompense accumulate"
+				},
+				"constructor": {
+					"notice": "Costruttore del contratto"
+				},
+				"getStakedBalance(address)": {
+					"notice": "Ottiene il saldo staked di un utente"
+				},
+				"getTotalValueLocked()": {
+					"notice": "Ottiene il totale dei token staked"
+				},
+				"stake(uint256)": {
+					"notice": "Effettua lo staking di token Q4A"
+				},
+				"stakeForDAO(uint256)": {
+					"notice": "Effettua lo staking di token Q4A per la DAO"
+				},
+				"transferOwnership(address)": {
+					"notice": "Trasferisce la proprietà del contratto a un nuovo proprietario"
+				},
+				"updateVRFParams(uint32,uint16)": {
+					"notice": "Aggiorna i parametri VRF"
+				},
+				"withdraw(uint256)": {
+					"notice": "Preleva token staked"
+				}
+			},
+			"notice": "Gestisce lo staking di token Q4A con APY variabile basato su VRF Chainlink e volatilità dell'oracolo",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"quantum/UBI4ALLQuantumFinance.sol": "UBI4ALLQuantumFinance"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol": {
+			"keccak256": "0x3d709a5e0f1f9b8841172b10ba8af785dd51a13eda9fc395723a706e51329904",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://038eef992d813c20737fbe94e3a36e5d541d1aa736158dd2a43dd5b840b8c360",
+				"dweb:/ipfs/QmZWJ25Yr1sUSAsfJRKvTMDmGkmy63hHhB495CUL1bpNz4"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol": {
+			"keccak256": "0xfe4e8bb4861bb3860ba890ab91a3b818ec66e5a8f544fb608cfcb73f433472cd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://644cff84052e1e82b5bb502b2a46e8f142a62b0db4cd9b38200798ba8373c6f7",
+				"dweb:/ipfs/QmTa99QHrJBn3SXDizquPBUiTxVCNKQrHgaWJhuds5Sce2"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol": {
+			"keccak256": "0xa9f8b7e09811f4ac9f421116b5d6bcf50b5748025c0cb012aaf5ff7c39a6b46a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d66b2096987616cda4611c109d9904863872ca5852d736b30f0e19e49afde35f",
+				"dweb:/ipfs/Qmc6jpm3k3YuJG7U2s3FWr81Vk2rdQBhdqD9sA6b8Cr9BE"
+			]
+		},
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/security/Pausable.sol": {
+			"keccak256": "0x15490c1ac7fb488198fce8a04211f15277ee816915367bc906110cbb57863bbe",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c3273e1e51c1bfe12b50778dd98d3d322ca315cd8e1185593694a0ac828b820",
+				"dweb:/ipfs/QmTyAWneXaURy9Ls4dovFWLV9yxzMkELmLsgLTWeubz8ZA"
+			]
+		},
+		"@openzeppelin/contracts/security/ReentrancyGuard.sol": {
+			"keccak256": "0xf4d28329285c89e85daf450fbe612ec5ceb19842ae0be976ab1569897940be90",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4a021f64d3d58a64fd3045afc6b192c82bca29d95cd594a3c0ed93d1c69ecc98",
+				"dweb:/ipfs/QmegaH5RM4Sboa22unJm3FdMVTd3K9UUf8ogbvBwx1K8XJ"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SafeCast.sol": {
+			"keccak256": "0x880e8b3325f624a5c4dfb9a754ed83bf0be1476d02c5063b215f3c3b9fdec331",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b52e14b50f3ca0b35d014b166235d94dfa8c9067bb3f5d65efdfb2193355a455",
+				"dweb:/ipfs/QmNrM5LEwfCi7cxMovccBpFeL8T9MWfqA15dW9SobPDPfo"
+			]
+		},
+		"interfaces/IUBI4ALLQuantum.sol": {
+			"keccak256": "0xed4773a40ea1b8e51e4bc875b3aa1aea35d6500956eb7d463dfc053b53634386",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://28c1598fb65f0cf11408fd768e911c119e239ffe14dc2cefd6b87295f7c85e7e",
+				"dweb:/ipfs/QmSBDSFE5A6ky3kF8sDPXeiEahFJzHNPBnt5jkCP7bN5Gt"
+			]
+		},
+		"interfaces/IUBI4ALLQuantumFinance.sol": {
+			"keccak256": "0x0bd9f04b0733542af47bd627d0a711abdd0358bc5163a8339141270c3cac4c31",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://461ac6d507cbde9e7a135c6ed5c28bd613eb9d90603cd5482a5471502fccded2",
+				"dweb:/ipfs/QmPgpYCFd5bbfUmtqunRFrzVpiGnDcZMDjrBDVYbX22kND"
+			]
+		},
+		"oracle/UBI4ALLOracle.sol": {
+			"keccak256": "0x335403fa9c74cda036c3e823ffdd382fab3f83600367a7f42c7e12dae4a9819e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2d11cc984b2676f7ac61bc567701427cfe34ab198df4d3ca197a726990c40088",
+				"dweb:/ipfs/QmSY2DTcsnZb2zfZ6gpfwTYF4GKER58NReCx5785xf5EGh"
+			]
+		},
+		"quantum/UBI4ALLQuantumFinance.sol": {
+			"keccak256": "0x720f87bcdda21c00ee33477c965348c048923e678bb9b01aaec417e2eafc2627",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://79dd3071979446a8e5ff21f2238a4193742a851539a70540193951c79100fd79",
+				"dweb:/ipfs/QmRJ1uW9s2ostd9zA64gKoM5mg8a6UqppVLXmL5zGU5cQo"
+			]
+		}
+	},
+	"version": 1
+}

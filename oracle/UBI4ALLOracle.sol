@@ -52,71 +52,27 @@ interface IUBI4ALLOracle {
 contract UBI4ALLOracle is IUBI4ALLOracle, Ownable, ReentrancyGuard, Pausable {
     /// @dev Struttura per i dati del prezzo
     struct PriceData {
-        uint256 price; // Prezzo della coppia (es. EUR/USD)
-        uint256 timestamp; // Timestamp dell'aggiornamento
-        bool isValid; // Validità del prezzo
+        uint256 price;
+        uint256 timestamp;
+        bool isValid;
     }
 
-    /// @dev Feed di prezzo Chainlink
     AggregatorV3Interface public priceFeed;
-
-    /// @dev Coppia supportata (EUR/USD)
     bytes32 public constant EUR_USD_PAIR = bytes32("EUR/USD");
-
-    /// @dev Mappatura dei prezzi più recenti per coppia
     mapping(bytes32 => PriceData) public latestPrices;
-
-    /// @dev Periodo di validità del prezzo (15 minuti)
     uint256 public constant PRICE_VALIDITY_PERIOD = 15 minutes;
-
-    /// @dev Periodo massimo di validità per i dati di Chainlink (1 ora)
     uint256 public constant CHAINLINK_STALENESS_THRESHOLD = 1 hours;
 
-    /// @notice Evento emesso quando il feed di prezzo viene aggiornato
     event PriceFeedUpdated(address indexed oldFeed, address indexed newFeed);
-
-    /// @notice Evento emesso quando il contratto viene messo in pausa
     event EmergencyPause(bytes32 indexed pair);
 
-    /// @notice Costruttore del contratto
-    /// @param _priceFeed Indirizzo del feed Chainlink per EUR/USD
-    /// @param initialOwner Indirizzo del proprietario iniziale
     constructor(address _priceFeed, address initialOwner) Ownable(initialOwner) {
         require(_priceFeed != address(0), "Invalid price feed address");
         priceFeed = AggregatorV3Interface(_priceFeed);
     }
 
-    /// @notice Aggiorna manualmente il prezzo per la coppia EUR/USD
-    /// @param pair Coppia di asset (deve essere EUR_USD_PAIR)
-    /// @param price Prezzo da impostare
-    /// @param timestamp Timestamp del prezzo
-    /// @param confidence Livello di confidenza del prezzo (non utilizzato)
-    function updatePrice(
-        bytes32 pair,
-        uint256 price,
-        uint256 timestamp,
-        uint256 confidence
-    ) external override onlyOwner whenNotPaused nonReentrant {
-        require(pair == EUR_USD_PAIR, "Invalid pair");
-        require(timestamp <= block.timestamp, "Future timestamp");
-        require(price > 0, "Invalid price");
-
-        latestPrices[pair] = PriceData({
-            price: price,
-            timestamp: timestamp,
-            isValid: true
-        });
-
-        emit PriceUpdated(pair, price, timestamp);
-    }
-
-    /// @notice Ottiene il prezzo più recente per la coppia EUR/USD
-    /// @param pair Coppia di asset (deve essere EUR_USD_PAIR)
-    /// @return price Prezzo della coppia
-    /// @return timestamp Timestamp dell'aggiornamento
-    /// @return isValid True se il prezzo è valido
     function getPrice(bytes32 pair) 
-        external 
+        public 
         view 
         override 
         returns (uint256 price, uint256 timestamp, bool isValid) 
@@ -128,7 +84,6 @@ contract UBI4ALLOracle is IUBI4ALLOracle, Ownable, ReentrancyGuard, Pausable {
             return (data.price, data.timestamp, true);
         }
 
-        // Fallback a Chainlink
         try priceFeed.latestRoundData() returns (
             uint80,
             int256 answer,
@@ -147,19 +102,31 @@ contract UBI4ALLOracle is IUBI4ALLOracle, Ownable, ReentrancyGuard, Pausable {
         }
     }
 
-    /// @notice Ottiene il prezzo più recente per la coppia EUR/USD
-    /// @return Prezzo più recente come int256
+    function updatePrice(
+        bytes32 pair,
+        uint256 price,
+        uint256 timestamp,
+        uint256 /*confidence*/
+    ) external override onlyOwner whenNotPaused nonReentrant {
+        require(pair == EUR_USD_PAIR, "Invalid pair");
+        require(timestamp <= block.timestamp, "Future timestamp");
+        require(price > 0, "Invalid price");
+
+        latestPrices[pair] = PriceData({
+            price: price,
+            timestamp: timestamp,
+            isValid: true
+        });
+
+        emit PriceUpdated(pair, price, timestamp);
+    }
+
     function getLatestPrice() external view override returns (int256) {
         (uint256 price, , bool isValid) = getPrice(EUR_USD_PAIR);
         require(isValid, "Invalid or stale price");
         return SafeCast.toInt256(price);
     }
 
-    /// @notice Ottiene il prezzo aggregato (equivalente a getPrice per EUR/USD)
-    /// @param pair Coppia di asset (deve essere EUR_USD_PAIR)
-    /// @return weightedPrice Prezzo aggregato
-    /// @return timestamp Timestamp dell'aggiornamento
-    /// @return isValid True se il prezzo è valido
     function getAggregatedPrice(bytes32 pair) 
         external 
         view 
@@ -169,11 +136,6 @@ contract UBI4ALLOracle is IUBI4ALLOracle, Ownable, ReentrancyGuard, Pausable {
         return getPrice(pair);
     }
 
-    /// @notice Ottiene il prezzo direttamente dal feed Chainlink
-    /// @param source Indirizzo del feed (deve corrispondere a priceFeed)
-    /// @return price Prezzo della coppia
-    /// @return timestamp Timestamp dell'aggiornamento
-    /// @return isValid True se il prezzo è valido
     function getSourcePrice(address source) 
         external 
         view 
@@ -199,20 +161,13 @@ contract UBI4ALLOracle is IUBI4ALLOracle, Ownable, ReentrancyGuard, Pausable {
         }
     }
 
-    /// @notice Aggiunge o aggiorna il feed Chainlink per EUR/USD
-    /// @param pair Coppia di asset (deve essere EUR_USD_PAIR)
-    /// @param source Nuovo indirizzo del feed Chainlink
-    /// @param weight Peso della sorgente (non utilizzato)
-    /// @param heartbeat Frequenza di aggiornamento della sorgente (non utilizzato)
-    /// @param maxDeviation Deviazione massima consentita (non utilizzato)
-    /// @param minConfidence Confidenza minima richiesta (non utilizzato)
     function addOracleSource(
         bytes32 pair,
         address source,
-        uint256 weight,
-        uint256 heartbeat,
-        uint256 maxDeviation,
-        uint256 minConfidence
+        uint256 /*weight*/,
+        uint256 /*heartbeat*/,
+        uint256 /*maxDeviation*/,
+        uint256 /*minConfidence*/
     ) external override onlyOwner nonReentrant {
         require(pair == EUR_USD_PAIR, "Invalid pair");
         require(source != address(0), "Invalid source address");
@@ -222,22 +177,17 @@ contract UBI4ALLOracle is IUBI4ALLOracle, Ownable, ReentrancyGuard, Pausable {
         emit PriceFeedUpdated(oldFeed, source);
     }
 
-    /// @notice Rimuove un feed (no-op per oracolo a sorgente singola)
-    /// @param pair Coppia di asset (deve essere EUR_USD_PAIR)
-    /// @param source Indirizzo del feed da rimuovere
     function removeOracleSource(bytes32 pair, address source) external view override onlyOwner {
         require(pair == EUR_USD_PAIR, "Invalid pair");
         require(source == address(priceFeed), "Invalid source");
         // No-op: l'oracolo supporta una sola sorgente
     }
 
-    /// @notice Mette in pausa il contratto (blocca updatePrice)
     function pause() external onlyOwner {
         _pause();
         emit EmergencyPause(EUR_USD_PAIR);
     }
 
-    /// @notice Ripristina il contratto dalla pausa
     function unpause() external onlyOwner {
         _unpause();
     }

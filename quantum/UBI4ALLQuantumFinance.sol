@@ -173,16 +173,15 @@ contract UBI4ALLQuantumFinance is Ownable, VRFConsumerBaseV2, IUBI4ALLQuantumFin
 
     /// @notice Aggiorna lo stake di un utente
     /// @param user Indirizzo dell'utente
-    function updateStake(address user) internal {
-        Stake storage userStake = stakes[user];
-        if (userStake.amount > 0 || userStake.daoAmount > 0) {
-            uint256 timeElapsed = block.timestamp - userStake.lastUpdate;
-            uint256 baseReward = calculateReward(user, userStake.amount, userStake.currentAPY);
-            uint256 daoReward = calculateReward(user, userStake.daoAmount, userStake.currentAPY);
-            userStake.accumulatedReward += baseReward + daoReward;
-            userStake.lastUpdate = block.timestamp;
-        }
+function updateStake(address user) internal {
+    Stake storage userStake = stakes[user];
+    if (userStake.amount > 0 || userStake.daoAmount > 0) {    
+        uint256 baseReward = calculateReward(user, userStake.amount, userStake.currentAPY);
+        uint256 daoReward = calculateReward(user, userStake.daoAmount, userStake.currentAPY);
+        userStake.accumulatedReward += baseReward + daoReward;
+        userStake.lastUpdate = block.timestamp;
     }
+}
 
     /// @notice Calcola le ricompense per un importo staked
     /// @param user Indirizzo dell'utente
