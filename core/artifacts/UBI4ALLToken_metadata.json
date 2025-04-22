@@ -2262,11 +2262,11 @@
 			]
 		},
 		"interfaces/IUBI4ALLQuantum.sol": {
-			"keccak256": "0xf4be867d12674967d2ec84c63dbc5333f20778f3eb364335b8464bda84ff6ddd",
+			"keccak256": "0xed4773a40ea1b8e51e4bc875b3aa1aea35d6500956eb7d463dfc053b53634386",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4cec4248f5a044322229e8006ebd6d695d37e7cf06d063ccee0f0f091fd70406",
-				"dweb:/ipfs/Qmaad7V52pm9wQmuZ3Wf7FbnMtNEh51pmUsXB2BBcVHeN3"
+				"bzz-raw://28c1598fb65f0cf11408fd768e911c119e239ffe14dc2cefd6b87295f7c85e7e",
+				"dweb:/ipfs/QmSBDSFE5A6ky3kF8sDPXeiEahFJzHNPBnt5jkCP7bN5Gt"
 			]
 		},
 		"interfaces/IUBI4ALLToken.sol": {
