@@ -1,0 +1,62 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Signature verification helper that can be used instead of `ECDSA.recover` to seamlessly support both ECDSA signatures from externally owned accounts (EOAs) as well as ERC-1271 signatures from smart contract wallets like Argent and Safe Wallet (previously Gnosis Safe).",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/npm/@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol": "SignatureChecker"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/npm/@openzeppelin/contracts/interfaces/IERC1271.sol": {
+			"keccak256": "0x957d2f0a814f8ec8edf41f1a1f197ce8fac33a6a76d6298ad134c3a437fbca01",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://827d5f88467316bfb60d5c24e0e7378bc433521ad8fa6bc335b93e7f21c3ae44",
+				"dweb:/ipfs/QmWD6YuGoNJitoYgPEspkvVFjAYcn7bfFfCUMFPZ6qgrdo"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
+			"keccak256": "0x2dbe29560b6d4f93cdae642d1cec4570b8a44722a2182559e990772c72ef0d57",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://00cf7d795a154670a9842f2a673e88e10bf379ca415fb1c990a9f1f278905c47",
+				"dweb:/ipfs/QmebeGqpdm76RqP1myWbMJwRDtsKqzpau8eRgSJ9ng77c9"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol": {
+			"keccak256": "0x0f1cc52ee171eac154233e212f85e9eb642a0720797e55700bc83686043ce7f7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://067fa823efbaac6266c8eb8f523d2ed4226199fb08ff2bbad9686b975dca4559",
+				"dweb:/ipfs/QmPuFymdQRJSreMeWdP1i8ZsJk42WBd88GU6czYUR8wWwE"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,8 @@
+/**
+ * Minified by jsDelivr using Terser v5.19.2.
+ * Original file: /npm/ub@0.0.1/ub.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+"use strict";var cache={},op=module.exports={};op.publish=function(c,e,a){for(var h=c.split("/");h[0];){if(cache[c])for(var o=cache[c],i=o.length-1;i>=0;i-=1)o[i].apply(a||this,e||[]);h.pop(),c=h.join("/")}},op.subscribe=function(c,e){return cache[c]||(cache[c]=[]),cache[c].push(e),[c,e]},op.unsubscribe=function(c,e){var a=c[0],h=cache[a].length-1;if(cache[a])for(;h>=0;h-=1)cache[a][h]===c[1]&&(cache[a].splice(cache[a][h],1),e&&delete cache[a])};
+//# sourceMappingURL=/sm/9ff72744e3dd90322108fec58f8c8d5b428a78b16ca7c7437c5d11cac871f046.map

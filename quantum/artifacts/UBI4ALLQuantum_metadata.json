@@ -1,0 +1,1558 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_treasuryWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_ecosystemWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_communityWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_liquidityWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_reserveWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "initialOwner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "allowance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "needed",
+						"type": "uint256"
+					}
+				],
+				"name": "ERC20InsufficientAllowance",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "needed",
+						"type": "uint256"
+					}
+				],
+				"name": "ERC20InsufficientBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "approver",
+						"type": "address"
+					}
+				],
+				"name": "ERC20InvalidApprover",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "ERC20InvalidReceiver",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "ERC20InvalidSender",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					}
+				],
+				"name": "ERC20InvalidSpender",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "EmergencyRecovery",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "leverage",
+						"type": "uint256"
+					}
+				],
+				"name": "LeveragedTransfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Paused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "QuantumTransfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensBurned",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensLockedForDAO",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensUnlockedForDAO",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Unpaused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "VestingReleased",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "walletType",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newWallet",
+						"type": "address"
+					}
+				],
+				"name": "WalletUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "COMMUNITY_ALLOCATION",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ECOSYSTEM_ALLOCATION",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "LIQUIDITY_ALLOCATION",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "RESERVE_ALLOCATION",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TOTAL_SUPPLY",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TREASURY_ALLOCATION",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "VESTING_PERIOD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "communityWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ecosystemWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "emergencyRecoverTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllocations",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "treasury",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ecosystem",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "community",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "liquidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "reserve",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					}
+				],
+				"name": "getReleasableVesting",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTotalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getWallets",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "treasury",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "ecosystem",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "community",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "liquidity",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "reserve",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "liquidityWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "lockForDAO",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "lockedForDAO",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					}
+				],
+				"name": "releaseVesting",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "reserveWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalLockedForDAO",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "leverage",
+						"type": "uint256"
+					}
+				],
+				"name": "transferWithLeverage",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "treasuryWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "unlockFromDAO",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "walletType",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "newWallet",
+						"type": "address"
+					}
+				],
+				"name": "updateWallet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "vestingSchedules",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "releasedAmount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "vestingStart",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"ERC20InsufficientAllowance(address,uint256,uint256)": [
+					{
+						"details": "Indicates a failure with the `spender`’s `allowance`. Used in transfers.",
+						"params": {
+							"allowance": "Amount of tokens a `spender` is allowed to operate with.",
+							"needed": "Minimum amount required to perform a transfer.",
+							"spender": "Address that may be allowed to operate on tokens without being their owner."
+						}
+					}
+				],
+				"ERC20InsufficientBalance(address,uint256,uint256)": [
+					{
+						"details": "Indicates an error related to the current `balance` of a `sender`. Used in transfers.",
+						"params": {
+							"balance": "Current balance for the interacting account.",
+							"needed": "Minimum amount required to perform a transfer.",
+							"sender": "Address whose tokens are being transferred."
+						}
+					}
+				],
+				"ERC20InvalidApprover(address)": [
+					{
+						"details": "Indicates a failure with the `approver` of a token to be approved. Used in approvals.",
+						"params": {
+							"approver": "Address initiating an approval operation."
+						}
+					}
+				],
+				"ERC20InvalidReceiver(address)": [
+					{
+						"details": "Indicates a failure with the token `receiver`. Used in transfers.",
+						"params": {
+							"receiver": "Address to which tokens are being transferred."
+						}
+					}
+				],
+				"ERC20InvalidSender(address)": [
+					{
+						"details": "Indicates a failure with the token `sender`. Used in transfers.",
+						"params": {
+							"sender": "Address whose tokens are being transferred."
+						}
+					}
+				],
+				"ERC20InvalidSpender(address)": [
+					{
+						"details": "Indicates a failure with the `spender` to be approved. Used in approvals.",
+						"params": {
+							"spender": "Address that may be allowed to operate on tokens without being their owner."
+						}
+					}
+				],
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance."
+				},
+				"Paused(address)": {
+					"details": "Emitted when the pause is triggered by `account`."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero."
+				},
+				"Unpaused(address)": {
+					"details": "Emitted when the pause is lifted by `account`."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"allowance(address,address)": {
+					"details": "See {IERC20-allowance}."
+				},
+				"approve(address,uint256)": {
+					"details": "See {IERC20-approve}. NOTE: If `value` is the maximum `uint256`, the allowance is not updated on `transferFrom`. This is semantically equivalent to an infinite approval. Requirements: - `spender` cannot be the zero address."
+				},
+				"balanceOf(address)": {
+					"params": {
+						"account": "Indirizzo dell'account"
+					},
+					"returns": {
+						"_0": "Saldo dell'account"
+					}
+				},
+				"burn(uint256)": {
+					"params": {
+						"amount": "Quantità di token da bruciare"
+					}
+				},
+				"constructor": {
+					"params": {
+						"_communityWallet": "Indirizzo del wallet comunità",
+						"_ecosystemWallet": "Indirizzo del wallet ecosistema",
+						"_liquidityWallet": "Indirizzo del wallet liquidità",
+						"_reserveWallet": "Indirizzo del wallet riserva",
+						"_treasuryWallet": "Indirizzo del wallet treasury",
+						"initialOwner": "Indirizzo del proprietario iniziale"
+					}
+				},
+				"decimals()": {
+					"details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the default value returned by this function, unless it's overridden. NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
+				},
+				"emergencyRecoverTokens(address,address)": {
+					"params": {
+						"to": "Indirizzo del destinatario",
+						"token": "Indirizzo del token da recuperare"
+					}
+				},
+				"getAllocations()": {
+					"returns": {
+						"community": "Allocazione comunità",
+						"ecosystem": "Allocazione ecosistema",
+						"liquidity": "Allocazione liquidità",
+						"reserve": "Allocazione riserva",
+						"treasury": "Allocazione treasury"
+					}
+				},
+				"getReleasableVesting(address)": {
+					"params": {
+						"wallet": "Indirizzo del wallet"
+					},
+					"returns": {
+						"_0": "Importo rilasciabile"
+					}
+				},
+				"getTotalSupply()": {
+					"returns": {
+						"_0": "Total supply (1 miliardo di Q4A)"
+					}
+				},
+				"getWallets()": {
+					"returns": {
+						"community": "Indirizzo wallet comunità",
+						"ecosystem": "Indirizzo wallet ecosistema",
+						"liquidity": "Indirizzo wallet liquidità",
+						"reserve": "Indirizzo wallet riserva",
+						"treasury": "Indirizzo wallet treasury"
+					}
+				},
+				"lockForDAO(uint256)": {
+					"params": {
+						"amount": "Quantità di token da bloccare"
+					}
+				},
+				"mint(address,uint256)": {
+					"params": {
+						"amount": "Quantità di token da mintare",
+						"to": "Indirizzo del destinatario"
+					}
+				},
+				"name()": {
+					"details": "Returns the name of the token."
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"paused()": {
+					"details": "Returns true if the contract is paused, and false otherwise."
+				},
+				"releaseVesting(address)": {
+					"params": {
+						"wallet": "Indirizzo del wallet in vesting"
+					}
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"symbol()": {
+					"details": "Returns the symbol of the token, usually a shorter version of the name."
+				},
+				"totalSupply()": {
+					"details": "See {IERC20-totalSupply}."
+				},
+				"transfer(address,uint256)": {
+					"params": {
+						"amount": "Quantità di token da trasferire",
+						"to": "Indirizzo del destinatario"
+					},
+					"returns": {
+						"_0": "True se il trasferimento ha successo"
+					}
+				},
+				"transferFrom(address,address,uint256)": {
+					"details": "See {IERC20-transferFrom}. Skips emitting an {Approval} event indicating an allowance update. This is not required by the ERC. See {xref-ERC20-_approve-address-address-uint256-bool-}[_approve]. NOTE: Does not update the allowance if the current allowance is the maximum `uint256`. Requirements: - `from` and `to` cannot be the zero address. - `from` must have a balance of at least `value`. - the caller must have allowance for ``from``'s tokens of at least `value`."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"transferWithLeverage(address,uint256,uint256)": {
+					"params": {
+						"amount": "Quantità di token da trasferire",
+						"leverage": "Fattore di leva (es. 100 = 1x, 200 = 2x)",
+						"to": "Indirizzo del destinatario"
+					},
+					"returns": {
+						"_0": "True se il trasferimento ha successo"
+					}
+				},
+				"unlockFromDAO(uint256)": {
+					"params": {
+						"amount": "Quantità di token da sbloccare"
+					}
+				},
+				"updateWallet(string,address)": {
+					"params": {
+						"newWallet": "Nuovo indirizzo del wallet",
+						"walletType": "Tipo di wallet (\"treasury\", \"ecosystem\", \"community\", \"liquidity\", \"reserve\")"
+					}
+				}
+			},
+			"stateVariables": {
+				"COMMUNITY_ALLOCATION": {
+					"details": "Allocazione per la comunità (15%)"
+				},
+				"ECOSYSTEM_ALLOCATION": {
+					"details": "Allocazione per l'ecosistema (20%)"
+				},
+				"LIQUIDITY_ALLOCATION": {
+					"details": "Allocazione per la liquidità (10%)"
+				},
+				"RESERVE_ALLOCATION": {
+					"details": "Allocazione per la riserva (5%)"
+				},
+				"TOTAL_SUPPLY": {
+					"details": "Total supply del token Q4A (1 miliardo di token, 18 decimali)"
+				},
+				"TREASURY_ALLOCATION": {
+					"details": "Allocazione per il treasury (50%)"
+				},
+				"VESTING_PERIOD": {
+					"details": "Periodo di vesting (1 anno)"
+				},
+				"lockedForDAO": {
+					"details": "Mappatura dei token bloccati per la DAO"
+				},
+				"totalLockedForDAO": {
+					"details": "Totale dei token bloccati per la DAO"
+				},
+				"treasuryWallet": {
+					"details": "Wallet per le allocazioni"
+				},
+				"vestingSchedules": {
+					"details": "Mappatura dei vesting per wallet"
+				},
+				"vestingStart": {
+					"details": "Timestamp di inizio del vesting"
+				}
+			},
+			"title": "UBI4ALLQuantum - Token Q4A per trading con leva avanzata",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"LeveragedTransfer(address,address,uint256,uint256)": {
+					"notice": "Evento emesso per trasferimenti con leva"
+				},
+				"QuantumTransfer(address,address,uint256)": {
+					"notice": "Evento emesso per trasferimenti di token"
+				},
+				"TokensLockedForDAO(address,uint256)": {
+					"notice": "Evento emesso per token bloccati per la DAO"
+				},
+				"TokensUnlockedForDAO(address,uint256)": {
+					"notice": "Evento emesso per token sbloccati dalla DAO"
+				},
+				"VestingReleased(address,uint256)": {
+					"notice": "Evento emesso per rilascio di token in vesting"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"balanceOf(address)": {
+					"notice": "Ottiene il saldo di un account"
+				},
+				"burn(uint256)": {
+					"notice": "Brucia token dal chiamante"
+				},
+				"constructor": {
+					"notice": "Costruttore del contratto"
+				},
+				"emergencyRecoverTokens(address,address)": {
+					"notice": "Recupera token ERC20 bloccati nel contratto"
+				},
+				"getAllocations()": {
+					"notice": "Ottiene le allocazioni dei token"
+				},
+				"getReleasableVesting(address)": {
+					"notice": "Ottiene l'importo di token in vesting rilasciabile per un wallet"
+				},
+				"getTotalSupply()": {
+					"notice": "Ottiene il total supply del token"
+				},
+				"getWallets()": {
+					"notice": "Ottiene gli indirizzi dei wallet"
+				},
+				"lockForDAO(uint256)": {
+					"notice": "Blocca token per la DAO"
+				},
+				"mint(address,uint256)": {
+					"notice": "Minta nuovi token"
+				},
+				"pause()": {
+					"notice": "Mette in pausa il contratto"
+				},
+				"releaseVesting(address)": {
+					"notice": "Rilascia i token in vesting per un wallet"
+				},
+				"transfer(address,uint256)": {
+					"notice": "Trasferisce token (con supporto per leva futura)"
+				},
+				"transferWithLeverage(address,uint256,uint256)": {
+					"notice": "Trasferisce token con supporto per leva (per trading avanzato)"
+				},
+				"unlockFromDAO(uint256)": {
+					"notice": "Sblocca token dalla DAO"
+				},
+				"unpause()": {
+					"notice": "Ripristina il contratto dalla pausa"
+				},
+				"updateWallet(string,address)": {
+					"notice": "Aggiorna l'indirizzo di un wallet"
+				}
+			},
+			"notice": "Gestisce il token Q4A con allocazioni, lock per DAO, vesting e supporto per trading con leva",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"quantum/UBI4ALLQuantum.sol": "UBI4ALLQuantum"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+			"keccak256": "0x4c06e6ed107ae827750b2377ba749978c310c0d662367e3ede3342398d6d7564",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3432dcd7e0f266834ffe229e582c95cec3bff892eef832706002b50b60ea53a4",
+				"dweb:/ipfs/QmcTF9GX8APQ69FWT9mTHTsGFt9vixxUCyUDE1XoRRJgoR"
+			]
+		},
+		"@openzeppelin/contracts/security/Pausable.sol": {
+			"keccak256": "0x15490c1ac7fb488198fce8a04211f15277ee816915367bc906110cbb57863bbe",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c3273e1e51c1bfe12b50778dd98d3d322ca315cd8e1185593694a0ac828b820",
+				"dweb:/ipfs/QmTyAWneXaURy9Ls4dovFWLV9yxzMkELmLsgLTWeubz8ZA"
+			]
+		},
+		"@openzeppelin/contracts/security/ReentrancyGuard.sol": {
+			"keccak256": "0xf4d28329285c89e85daf450fbe612ec5ceb19842ae0be976ab1569897940be90",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4a021f64d3d58a64fd3045afc6b192c82bca29d95cd594a3c0ed93d1c69ecc98",
+				"dweb:/ipfs/QmegaH5RM4Sboa22unJm3FdMVTd3K9UUf8ogbvBwx1K8XJ"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0x7bb71eec1addf6bf49477b47a74c4740b39b651edf4801d41868c4b05a8bd8be",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bc0cd51096f6455b62497d2780b5b7b32b5630dd80b0a0a8d59c3a16a19e0e81",
+				"dweb:/ipfs/QmToRJzEZ4w5EnEuTXFDP1NTNVAWEpEatPXDud4T3bBjEj"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xf7b3f74cec9f285c369ee9494c96ca24a6ec23a8985f4ba2eafba78279e48ad1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e02b01bf539c330f41ff408ba5980eeb4a578e790afdc73b62b4f33c04988bc0",
+				"dweb:/ipfs/QmSbr7rZqLnws371ENjg9wj1CMtFFJVQFGS4TojKJ3CWzb"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x364eb4d3170b2a469643b2eeccbe6e54159f9c566e154cb5d139c20672f9691b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://64e0b563df8633769c034623b1c62e3df02897edd64f223301531ef5e96fe1fa",
+				"dweb:/ipfs/QmXxxHbfNYnRXLdF88usW3s1MbJ8EZE7FE94eWk9T2354p"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
+			"keccak256": "0x9db94a991829328dd0812b3cd0f677abb9357aa239fec829ae917c22b033e311",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://00f4330ea774b0fb45b4a9397ddf9385e12a1c6d568f2143af7f4f3176b37c33",
+				"dweb:/ipfs/QmXKbfbAohaWzyFZZ8btYJqHx8fPfTJDRk5Q1R4WK51j4E"
+			]
+		},
+		"interfaces/IUBI4ALLQuantum.sol": {
+			"keccak256": "0xf4be867d12674967d2ec84c63dbc5333f20778f3eb364335b8464bda84ff6ddd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4cec4248f5a044322229e8006ebd6d695d37e7cf06d063ccee0f0f091fd70406",
+				"dweb:/ipfs/Qmaad7V52pm9wQmuZ3Wf7FbnMtNEh51pmUsXB2BBcVHeN3"
+			]
+		},
+		"quantum/UBI4ALLQuantum.sol": {
+			"keccak256": "0x170b707bb42995ec48106fc9138a857b07e89c48debbd8cbc0cdadabd3a3cb74",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ec84de9e4370724f2235b546625743186dadd55aaa0c9401c957b9552a3507ac",
+				"dweb:/ipfs/Qmb8PKpGHk7mYXBK5saBQKuNCUELgHAiTvTwSBAoaTZzML"
+			]
+		}
+	},
+	"version": 1
+}

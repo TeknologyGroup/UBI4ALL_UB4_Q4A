@@ -1,0 +1,217 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "pair",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "source",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "weight",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "heartbeat",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxDeviation",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minConfidence",
+						"type": "uint256"
+					}
+				],
+				"name": "addOracleSource",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "pair",
+						"type": "bytes32"
+					}
+				],
+				"name": "getAggregatedPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "weightedPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isValid",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "pair",
+						"type": "bytes32"
+					}
+				],
+				"name": "getPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isValid",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "source",
+						"type": "address"
+					}
+				],
+				"name": "getSourcePrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isValid",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "pair",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "source",
+						"type": "address"
+					}
+				],
+				"name": "removeOracleSource",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "pair",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "confidence",
+						"type": "uint256"
+					}
+				],
+				"name": "updatePrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"interfaces/IUBI4ALLOracle.sol": "IUBI4ALLOracle"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interfaces/IUBI4ALLOracle.sol": {
+			"keccak256": "0x49272c74047a783a16c9163a9cefa6f6ac19d1fc0611821df60335e8048af538",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c6a191d8343caf8416dcb7c7c04f9c0fa361eaf321a303406a7b4a80024afa15",
+				"dweb:/ipfs/QmeydCJh4nAkpNqqYuJCnF5g9Hid1GLYrNjokrxau95vXf"
+			]
+		}
+	},
+	"version": 1
+}

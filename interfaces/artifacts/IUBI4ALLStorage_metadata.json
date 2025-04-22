@@ -1,0 +1,96 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "data",
+						"type": "bytes32"
+					}
+				],
+				"name": "getData",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "data",
+						"type": "bytes32"
+					}
+				],
+				"name": "saveData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Interface for the UBI4ALLStorage contract",
+			"kind": "dev",
+			"methods": {
+				"getData(bytes32)": {
+					"details": "Retrieve UBI4ALL data",
+					"params": {
+						"data": "Data to retrieve"
+					},
+					"returns": {
+						"_0": "The stored data"
+					}
+				},
+				"saveData(bytes32)": {
+					"details": "Save UBI4ALL data",
+					"params": {
+						"data": "Data to be saved"
+					}
+				}
+			},
+			"title": "IUBI4ALLStorage",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"interfaces/IUBI4ALLStorage.sol": "IUBI4ALLStorage"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interfaces/IUBI4ALLStorage.sol": {
+			"keccak256": "0x600d5f9faa1a5144aa841f79c9adb5481f02b357e71cc63c0e8e6b5dd568e6d1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://706d385f0d007493c1d04f84b139d186919efe200589cadec6dc7f93cf9bf986",
+				"dweb:/ipfs/QmSqo7HscmGwX9oMbKwCnMV4QUZbkZanqGhhftjhyepWxr"
+			]
+		}
+	},
+	"version": 1
+}

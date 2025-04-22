@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"interfaces/IUBI4ALLQuantumFinance.sol": "IUBI4ALLQuantumFinance"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interfaces/IUBI4ALLQuantumFinance.sol": {
+			"keccak256": "0x0bd9f04b0733542af47bd627d0a711abdd0358bc5163a8339141270c3cac4c31",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://461ac6d507cbde9e7a135c6ed5c28bd613eb9d90603cd5482a5471502fccded2",
+				"dweb:/ipfs/QmPgpYCFd5bbfUmtqunRFrzVpiGnDcZMDjrBDVYbX22kND"
+			]
+		}
+	},
+	"version": 1
+}

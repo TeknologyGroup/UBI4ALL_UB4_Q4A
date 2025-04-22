@@ -1,0 +1,538 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_ubi4allToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_quantumToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_uniswapRouter",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_uniswapFactory",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_liquidityWallet",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "initialOwner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amountToken",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amountETH",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "liquidity",
+						"type": "uint256"
+					}
+				],
+				"name": "LiquidityAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amountToken",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amountETH",
+						"type": "uint256"
+					}
+				],
+				"name": "LiquidityRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "tokenIn",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "tokenOut",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "QuantumSwap",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "DEADLINE_EXTENSION",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountTokenDesired",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountTokenMin",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountETHMin",
+						"type": "uint256"
+					}
+				],
+				"name": "addLiquidityQ4A",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountTokenDesired",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountTokenMin",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountETHMin",
+						"type": "uint256"
+					}
+				],
+				"name": "addLiquidityUB4",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "liquidityWallet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "quantumToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "liquidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountTokenMin",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountETHMin",
+						"type": "uint256"
+					}
+				],
+				"name": "removeLiquidityQ4A",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "liquidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountTokenMin",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountETHMin",
+						"type": "uint256"
+					}
+				],
+				"name": "removeLiquidityUB4",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountIn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountOutMin",
+						"type": "uint256"
+					}
+				],
+				"name": "swapQ4AtoUB4",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountIn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountOutMin",
+						"type": "uint256"
+					}
+				],
+				"name": "swapUB4toQ4A",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ubi4allToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "uniswapFactory",
+				"outputs": [
+					{
+						"internalType": "contract IUniswapV2Factory",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "uniswapRouter",
+				"outputs": [
+					{
+						"internalType": "contract IUniswapV2Router02",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"quantum/UBI4ALLLiquidator.sol": "UBI4ALLLiquidator"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xf7b3f74cec9f285c369ee9494c96ca24a6ec23a8985f4ba2eafba78279e48ad1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e02b01bf539c330f41ff408ba5980eeb4a578e790afdc73b62b4f33c04988bc0",
+				"dweb:/ipfs/QmSbr7rZqLnws371ENjg9wj1CMtFFJVQFGS4TojKJ3CWzb"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"interfaces/IUBI4ALLLiquidator.sol": {
+			"keccak256": "0xc0d7e30aca8d152fe01540354e0f35610106fb64278c2ebbac6a64af0549cd64",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bab02178f0e6a2e9ac2f1473b2f162a0b4a959da45033ebe70593759956e9dbb",
+				"dweb:/ipfs/QmZW1Su5NnKc74xkBxPMJEEixJY4eiqDbpQQZtuSwERRNr"
+			]
+		},
+		"interfaces/IUBI4ALLQuantum.sol": {
+			"keccak256": "0xf4be867d12674967d2ec84c63dbc5333f20778f3eb364335b8464bda84ff6ddd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4cec4248f5a044322229e8006ebd6d695d37e7cf06d063ccee0f0f091fd70406",
+				"dweb:/ipfs/Qmaad7V52pm9wQmuZ3Wf7FbnMtNEh51pmUsXB2BBcVHeN3"
+			]
+		},
+		"interfaces/IUBI4ALLToken.sol": {
+			"keccak256": "0x84bc14ab20d68f8b9eca94486eb4e825c40a21ccc6402bfaf24c7cfb7d02a343",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://148b9ae7f024795865ef2e0fb45fb1474aa13b938654d27c726805668ef669d6",
+				"dweb:/ipfs/QmVgEmmbQg1jhWjciEXEjHzn4cHb8sMgJH1ATFapExkwnE"
+			]
+		},
+		"interfaces/IUniswapV2Factory.sol": {
+			"keccak256": "0x62ba1275ffa29cf87e639144f29e6094bd5e65089bee74c4b38030ff764d1afb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f6418c9e05c9a3595bac5eaa7bc7fd5ff75cbe09b6d67bf2eea9b5793ee7e7c7",
+				"dweb:/ipfs/QmYCxUVWEUHJngpABeADXRPfgLDFze2XoN6M4zYCTkXtEq"
+			]
+		},
+		"interfaces/IUniswapV2Router01.sol": {
+			"keccak256": "0x8bbb79631acd50dd80769511631fd5c1b3d176d751444c72b66617e45e74a51f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c7073ecfda720546892d52631ab54f0ad091e2aab08ee69982f091af9562f43",
+				"dweb:/ipfs/Qmb9T1NXKPadhLNQxh6bvGUDs7PFziTCNmP8YpJadCdEpP"
+			]
+		},
+		"interfaces/IUniswapV2Router02.sol": {
+			"keccak256": "0x448853e854c870450278b3471df4bc231ffe3a0f6080e42eb50b1a310a8bc9db",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b1fa53251d8707989b962e931c1ee0c0b75d01cd0cce5b58d2f80384d5dd622d",
+				"dweb:/ipfs/QmNMuHubAKosBp1atPfV2RysRCccvWeUapZEfQEy779JBx"
+			]
+		},
+		"quantum/UBI4ALLLiquidator.sol": {
+			"keccak256": "0x445fe907ca3e7cf414062630cac3ba661080421da64fc352727ef8fb82eb3901",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://67579ba71882cac12c451f4c59be04643dd770aa8cd4d919276b07d705fb747f",
+				"dweb:/ipfs/QmPCtrXoMi1vgX3p9NC1bnM5ZkaXbYfoMSjX9oghDxbJbX"
+			]
+		}
+	},
+	"version": 1
+}

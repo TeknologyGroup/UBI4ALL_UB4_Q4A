@@ -1,0 +1,350 @@
+{
+	"id": "3f76d6c4611f8f2483f091c8c2159355",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.28",
+	"solcLongVersion": "0.8.28+commit.7893614a",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"interfaces/IUBI4ALLStorage.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\n/**\n * @title IUBI4ALLStorage\n * @dev Interface for the UBI4ALLStorage contract\n */\ninterface IUBI4ALLStorage {\n    /**\n     * @dev Save UBI4ALL data\n     * @param data Data to be saved\n     */\n    function saveData(bytes32 data) external;\n\n    /**\n     * @dev Retrieve UBI4ALL data\n     * @param data Data to retrieve\n     * @return The stored data\n     */\n    function getData(bytes32 data) external view returns (bytes32);\n}"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": [],
+			"evmVersion": "london"
+		}
+	},
+	"output": {
+		"contracts": {
+			"interfaces/IUBI4ALLStorage.sol": {
+				"IUBI4ALLStorage": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "bytes32",
+									"name": "data",
+									"type": "bytes32"
+								}
+							],
+							"name": "getData",
+							"outputs": [
+								{
+									"internalType": "bytes32",
+									"name": "",
+									"type": "bytes32"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "bytes32",
+									"name": "data",
+									"type": "bytes32"
+								}
+							],
+							"name": "saveData",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"details": "Interface for the UBI4ALLStorage contract",
+						"kind": "dev",
+						"methods": {
+							"getData(bytes32)": {
+								"details": "Retrieve UBI4ALL data",
+								"params": {
+									"data": "Data to retrieve"
+								},
+								"returns": {
+									"_0": "The stored data"
+								}
+							},
+							"saveData(bytes32)": {
+								"details": "Save UBI4ALL data",
+								"params": {
+									"data": "Data to be saved"
+								}
+							}
+						},
+						"title": "IUBI4ALLStorage",
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"getData(bytes32)": "54f6127f",
+							"saveData(bytes32)": "d69b3184"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"data\",\"type\":\"bytes32\"}],\"name\":\"getData\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"data\",\"type\":\"bytes32\"}],\"name\":\"saveData\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface for the UBI4ALLStorage contract\",\"kind\":\"dev\",\"methods\":{\"getData(bytes32)\":{\"details\":\"Retrieve UBI4ALL data\",\"params\":{\"data\":\"Data to retrieve\"},\"returns\":{\"_0\":\"The stored data\"}},\"saveData(bytes32)\":{\"details\":\"Save UBI4ALL data\",\"params\":{\"data\":\"Data to be saved\"}}},\"title\":\"IUBI4ALLStorage\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"interfaces/IUBI4ALLStorage.sol\":\"IUBI4ALLStorage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"interfaces/IUBI4ALLStorage.sol\":{\"keccak256\":\"0x600d5f9faa1a5144aa841f79c9adb5481f02b357e71cc63c0e8e6b5dd568e6d1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://706d385f0d007493c1d04f84b139d186919efe200589cadec6dc7f93cf9bf986\",\"dweb:/ipfs/QmSqo7HscmGwX9oMbKwCnMV4QUZbkZanqGhhftjhyepWxr\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"interfaces/IUBI4ALLStorage.sol": {
+				"ast": {
+					"absolutePath": "interfaces/IUBI4ALLStorage.sol",
+					"exportedSymbols": {
+						"IUBI4ALLStorage": [
+							17
+						]
+					},
+					"id": 18,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".28"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "32:24:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IUBI4ALLStorage",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": {
+								"id": 2,
+								"nodeType": "StructuredDocumentation",
+								"src": "58:83:0",
+								"text": " @title IUBI4ALLStorage\n @dev Interface for the UBI4ALLStorage contract"
+							},
+							"fullyImplemented": false,
+							"id": 17,
+							"linearizedBaseContracts": [
+								17
+							],
+							"name": "IUBI4ALLStorage",
+							"nameLocation": "152:15:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 3,
+										"nodeType": "StructuredDocumentation",
+										"src": "174:77:0",
+										"text": " @dev Save UBI4ALL data\n @param data Data to be saved"
+									},
+									"functionSelector": "d69b3184",
+									"id": 8,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "saveData",
+									"nameLocation": "265:8:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 6,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 5,
+												"mutability": "mutable",
+												"name": "data",
+												"nameLocation": "282:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 8,
+												"src": "274:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "274:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "273:14:0"
+									},
+									"returnParameters": {
+										"id": 7,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "296:0:0"
+									},
+									"scope": 17,
+									"src": "256:41:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 9,
+										"nodeType": "StructuredDocumentation",
+										"src": "303:112:0",
+										"text": " @dev Retrieve UBI4ALL data\n @param data Data to retrieve\n @return The stored data"
+									},
+									"functionSelector": "54f6127f",
+									"id": 16,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getData",
+									"nameLocation": "429:7:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 12,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 11,
+												"mutability": "mutable",
+												"name": "data",
+												"nameLocation": "445:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 16,
+												"src": "437:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 10,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "437:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "436:14:0"
+									},
+									"returnParameters": {
+										"id": 15,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 14,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 16,
+												"src": "474:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 13,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "474:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "473:9:0"
+									},
+									"scope": 17,
+									"src": "420:63:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 18,
+							"src": "142:343:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "32:453:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

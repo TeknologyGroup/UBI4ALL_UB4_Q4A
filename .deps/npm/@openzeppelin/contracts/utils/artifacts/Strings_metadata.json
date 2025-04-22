@@ -1,0 +1,122 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "length",
+						"type": "uint256"
+					}
+				],
+				"name": "StringsInsufficientHexLength",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "StringsInvalidAddressFormat",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "StringsInvalidChar",
+				"type": "error"
+			}
+		],
+		"devdoc": {
+			"details": "String operations.",
+			"errors": {
+				"StringsInsufficientHexLength(uint256,uint256)": [
+					{
+						"details": "The `value` string doesn't fit in the specified `length`."
+					}
+				],
+				"StringsInvalidAddressFormat()": [
+					{
+						"details": "The string being parsed is not a properly formatted address."
+					}
+				],
+				"StringsInvalidChar()": [
+					{
+						"details": "The string being parsed contains characters that are not in scope of the given base."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/npm/@openzeppelin/contracts/utils/Strings.sol": "Strings"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/npm/@openzeppelin/contracts/utils/Panic.sol": {
+			"keccak256": "0xbed383595d014af07ed0330243aa0de868518711f10fce91413be0e12a9993b9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f2f98d04c8b9bf51598d55840249f3d1f71335ae9a38cb6b3616b55c85107a6e",
+				"dweb:/ipfs/QmWJhMXynwiwX9kvRTt8Q5f3UBjya73m7euTLh4o7ezq7s"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0x31c9ceb54a5efc66e7b6e080bef765b04d95902593e7e85b89a6b2c2c174aa1b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://94ec1dad794f2c3435fc88d4276193d706519f57df91a6d6d2146ddd109fb2e7",
+				"dweb:/ipfs/Qme9URu5i86xYrzvJV8KE5Kn1pWqEjkxnA9VhFFXwUZSJF"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/math/Math.sol": {
+			"keccak256": "0x18eac4f4dd000e5b570dc11fb0d3cccf30ec9a673c19f96b09d417bf922c0d6e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://99bea806ae3e3d376f320713da78f9c116a8dc8e33133ae1b5f361bc69ff7eb1",
+				"dweb:/ipfs/Qmd7poYYxdBb7Ry2yQmTqHgYGyjCcK9qwk43pcpJa7g8Lk"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+			"keccak256": "0x880e8b3325f624a5c4dfb9a754ed83bf0be1476d02c5063b215f3c3b9fdec331",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b52e14b50f3ca0b35d014b166235d94dfa8c9067bb3f5d65efdfb2193355a455",
+				"dweb:/ipfs/QmNrM5LEwfCi7cxMovccBpFeL8T9MWfqA15dW9SobPDPfo"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+			"keccak256": "0x1c13c91b325c1c175618d13b61f5a0806c946a1a20ccec345227ceb193536d41",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cb90f6b2f5b149dfc1047a713fa0d1e010df5fa5c5de50c16d080561a6dc64be",
+				"dweb:/ipfs/QmWVzdQygd5ydKkix1W3UQgmKpygyyKB6KkbsMdAMYjpJc"
+			]
+		}
+	},
+	"version": 1
+}

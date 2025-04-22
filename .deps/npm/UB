@@ -1,0 +1,39 @@
+"use strict"
+var cache = {}
+
+var op = module.exports = {}
+
+op.publish = function(topic, args, scope) {
+  var topics = topic.split('/')
+  while(topics[0]) {
+    if(cache[topic]) {
+      var thisTopic = cache[topic]
+      var i = thisTopic.length - 1
+      for(i; i >= 0;  i -= 1) {
+        thisTopic[i].apply(scope || this, args || [])
+      }
+    }
+    topics.pop()
+    topic = topics.join('/')
+  }
+}
+
+op.subscribe = function(topic, cb) {
+  if(!cache[topic]) cache[topic] = []
+  cache[topic].push(cb)
+  return [topic, cb]
+}
+
+op.unsubscribe = function(handle, completely) {
+  var t = handle[0]
+  var i = cache[t].length -1
+
+  if(cache[t]) {
+    for(i; i >= 0; i -= 1){
+      if(cache[t][i] === handle[1])  {
+        cache[t].splice(cache[t][i], 1)
+        if(completely) delete cache[t]
+      }
+    }
+  }
+}

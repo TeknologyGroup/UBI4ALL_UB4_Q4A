@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"core/UBI4ALLStorage.sol": "UBI4ALLStorage"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"core/UBI4ALLStorage.sol": {
+			"keccak256": "0xabf756c98752d9a07d0d64641f415d07fde881b27d0335e72b061d8d8ad8fa0d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://346896a04be555f40de229339bb84cd295357e81730baefa6878b040319ebca6",
+				"dweb:/ipfs/QmZhBDx9YpJPzqd3C2XTudMBFNpaaHCwPrtDuQV8T7RgUZ"
+			]
+		}
+	},
+	"version": 1
+}

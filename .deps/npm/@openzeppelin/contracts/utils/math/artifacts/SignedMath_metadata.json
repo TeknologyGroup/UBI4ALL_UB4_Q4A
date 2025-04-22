@@ -1,0 +1,54 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Standard signed math utilities missing in the Solidity language.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/npm/@openzeppelin/contracts/utils/math/SignedMath.sol": "SignedMath"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/npm/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+			"keccak256": "0x880e8b3325f624a5c4dfb9a754ed83bf0be1476d02c5063b215f3c3b9fdec331",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b52e14b50f3ca0b35d014b166235d94dfa8c9067bb3f5d65efdfb2193355a455",
+				"dweb:/ipfs/QmNrM5LEwfCi7cxMovccBpFeL8T9MWfqA15dW9SobPDPfo"
+			]
+		},
+		".deps/npm/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+			"keccak256": "0x1c13c91b325c1c175618d13b61f5a0806c946a1a20ccec345227ceb193536d41",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cb90f6b2f5b149dfc1047a713fa0d1e010df5fa5c5de50c16d080561a6dc64be",
+				"dweb:/ipfs/QmWVzdQygd5ydKkix1W3UQgmKpygyyKB6KkbsMdAMYjpJc"
+			]
+		}
+	},
+	"version": 1
+}

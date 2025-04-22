@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"libraries/UBI4ALLMath.sol": "UBI4ALLMath"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"libraries/UBI4ALLMath.sol": {
+			"keccak256": "0x2f004bc401aaf6a8dc822377521b58bda6cc4723baaf4f6a18b1b1e86dbc53a4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://eede79b00217f00d69074241d65d0024c1f4001e10b9d0268cd1d5dc86413b5f",
+				"dweb:/ipfs/QmU5pxM1re3KnDnfG3cfHx5Fvwg7QtGAS6ErhxTqhJ2EKD"
+			]
+		}
+	},
+	"version": 1
+}
